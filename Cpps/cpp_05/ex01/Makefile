@@ -2,11 +2,11 @@ MAKEFLAGS += -s
 
 CC = c++ 
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -std=c++98
+CFLAGS = -std=c++98 #-Wall -Wextra -Werror 
 
-NAME = Bureaucrat
+NAME = BureForm
 
-SRCS = main.cpp Bureaucrat.cpp  
+SRCS = main.cpp Bureaucrat.cpp  Form.cpp 
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
