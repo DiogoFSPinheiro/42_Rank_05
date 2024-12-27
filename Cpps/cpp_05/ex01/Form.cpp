@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() : _name("Deafult"), _gradeToExec(149), _gradeToSign(150)
 {
@@ -30,7 +31,6 @@ Form::Form(const std::string name, const int gradeToSign, const int gradeToExec)
 
 Form::Form(const Form& copy) : _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign) , _isSigned(copy._isSigned)
 {
-	_isSigned  = false;
 	std::cout << "Copy constructor called!" << std::endl;
 }
 
