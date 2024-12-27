@@ -71,7 +71,11 @@ bool 	Form::getIsSigned() const
 
 std::ostream& operator<<(std::ostream &ouput, const Form& show)
 {
-	ouput << "Form: " << show.getName() << " needs " << show.getSignGrade() << " to be signed and " << show.getExecGrade() << " to execute, status: " << show.getIsSigned();
+	std::string done = "Unsigned";
+
+	if (show.getIsSigned())
+		done = "Signed";
+	ouput << "Form: " << show.getName() << " needs " << show.getSignGrade() << " to be signed and " << show.getExecGrade() << " to execute, status: " << done;
     return ouput;
 }
 
