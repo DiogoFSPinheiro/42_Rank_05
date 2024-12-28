@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/28 12:24:18 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:46:19 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@
 
 int main() {
     
-    PresidentialPardonForm form1("boy");
+    PresidentialPardonForm form1("ola");
+    Bureaucrat Danny("Danny", 1);
     
-    std::cout << form1 << std::endl; 
-    std::cout << std::endl; 
-    form1.getTarget();
-    
-    
-    
+    std::cout << form1 << std::endl;
+
+    Danny.signForm(form1);
+    Danny.executeForm(form1);
+
+
+
     return 0;
 }
 

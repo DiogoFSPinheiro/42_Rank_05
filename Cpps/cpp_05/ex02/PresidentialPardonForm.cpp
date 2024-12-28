@@ -6,21 +6,19 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/28 12:23:54 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:37:10 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Deafult", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Deafult", 25, 5, "no target")
 {
-	_target = "no target";
 	std::cout << "Default constructor called!" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("Presidential Pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("Presidential Pardon", 25, 5, target)
 {
-	_target = target;
 	std::cout << "Data constructor called!" << std::endl;
 }
 
@@ -45,10 +43,12 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 	return *this;
 }
 
-void	PresidentialPardonForm::getTarget()
+void PresidentialPardonForm::executor() const
 {
-	std::cout << "the target for form is "<< this->_target << std::endl;
+	std::cout << "Just to inform that "<< green << this->getTarget() <<  reset << " has been pardoned by Zaphod Beeblebrox."  << std::endl;
 }
+
+
 
 
 

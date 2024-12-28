@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                     :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/27 12:34:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:49:35 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm() : _name("Deafult"), _gradeToExec(149), _gradeToSign(150)
+AForm::AForm() : _name("Deafult"), _gradeToExec(149), _gradeToSign(150), _target("Deafult")
 {
 	_isSigned  = false;
 	std::cout << "Default constructor called!" << std::endl;
 }
 
-AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _gradeToExec(gradeToExec), _gradeToSign(gradeToSign)
+AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec, const std::string target) 
+	: _name(name), _gradeToExec(gradeToExec), _gradeToSign(gradeToSign), _target(target)
 {
 	if (_gradeToExec < 1 || _gradeToSign < 1)
 		throw GradeTooHighException();
@@ -29,7 +30,8 @@ AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExe
 	std::cout << "Data constructor called!" << std::endl;
 }
 
-AForm::AForm(const AForm& copy) : _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign) , _isSigned(copy._isSigned)
+AForm::AForm(const AForm& copy) 
+	: _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign) , _isSigned(copy._isSigned), _target(copy._target)
 {
 	std::cout << "Copy constructor called!" << std::endl;
 }
@@ -69,13 +71,18 @@ bool 	AForm::getIsSigned() const
 	return this->_isSigned;
 }
 
+std::string AForm::getTarget() const
+{
+	return this->_target;
+}
+
 std::ostream& operator<<(std::ostream &ouput, const AForm& show)
 {
 	std::string done = "Unsigned";
 
 	if (show.getIsSigned())
 		done = "Signed";
-	ouput << "AForm: " << show.getName() << " needs " << show.getSignGrade() << " to be signed and " << show.getExecGrade() << " to execute, status: " << done;
+	ouput << "AForm: " << show.getName() << " needs " << show.getSignGrade() << " to be signed and " << show.getExecGrade() << " to execute, status: " << done << ". The target is " << show.getTarget();
     return ouput;
 }
 
@@ -93,6 +100,22 @@ void 	AForm::beSigned(const Bureaucrat &a)
 {
 	if (this->_gradeToSign >= a.getGrade())
 		this->_isSigned = true;
+	else
+		throw GradeTooLowException();
+}
+
+void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (this->_gradeToExec >= executor.getGrade())
+	{
+		if (this->_isSigned)
+		{
+			std::cout << green << this->getName() << " executed " << executor.getName() << reset << std::endl;
+			this->executor();	
+		}
+		else
+			std::cout <<  this->getName() << "is not signed! So it can't be executed!" << std::endl;
+	}
 	else
 		throw GradeTooLowException();
 }

@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/27 19:08:24 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:49:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AFORM_HPP
 #define AFORM_HPP
+
+#define blue "\033[34m"
+#define red "\033[31m"
+#define green "\033[32m"
+#define yellow "\033[33m"
+#define magenta "\033[35m"
+#define cyan "\033[36m"
+#define reset "\033[0m"
 
 #include <string>
 #include <iostream>
@@ -24,11 +32,11 @@ class AForm
 		bool			  _isSigned;
 		const int		  _gradeToSign;
 		const int		  _gradeToExec;
-		//TODO colocar aqui o target para ficar mais vooooooooooooooonito
+		const std::string _target;
 
 	public:
 		AForm();
-		AForm(const std::string name, const int gradeToExec, const int gradeToSign);
+		AForm(const std::string name, const int gradeToExec, const int gradeToSign, const std::string target);
 		AForm(const AForm& copy);
 		AForm &operator=(const AForm& other);
 		virtual ~AForm();
@@ -38,6 +46,10 @@ class AForm
 		bool 	getIsSigned() const;
 		std::string getName() const;
 		void 	beSigned(const Bureaucrat &a);
+		std::string getTarget() const;
+		void	execute(Bureaucrat const &executor) const;
+		virtual void	executor() const = 0;
+
 		
 
 		
