@@ -4,9 +4,9 @@ CC = c++
 
 CFLAGS = -std=c++98 #-Wall -Wextra -Werror 
 
-NAME = BureForm
+NAME = MultyForm
 
-SRCS = main.cpp Bureaucrat.cpp  Form.cpp 
+SRCS = main.cpp Bureaucrat.cpp  AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp   
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -47,9 +47,9 @@ $(NAME) : $(OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-run:
-	make go
-	./BureForm
+go:
+	make re
+	./MultyForm
 
 clean:
 	rm -rf $(OBJS) 

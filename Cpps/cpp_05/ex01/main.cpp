@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/27 18:56:39 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:54:36 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,18 @@ int main() {
     try {
         std::cout << cyan << "\n[TEST 4] Creating Form With Invalid Grade (Too Low)" << reset << std::endl;
         Form form("Impossible Form", 151, 10);
+    }
+    catch (const std::exception &e) {
+        std::cerr << red << "Exception: " << reset << e.what() << std::endl;
+    }
+
+    try {
+        std::cout << cyan << "\n[TEST 5] Trying to sign again" << reset << std::endl;
+        Form form("Signed Form", 100, 10);
+        Bureaucrat tommy("Tommy", 1);
+        Bureaucrat fred("Fred", 1);
+        tommy.signForm(form);
+        fred.signForm(form);
     }
     catch (const std::exception &e) {
         std::cerr << red << "Exception: " << reset << e.what() << std::endl;
