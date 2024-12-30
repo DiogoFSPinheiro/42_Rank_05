@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/28 18:49:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:59:35 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+
 class Bureaucrat;
 
 class AForm 

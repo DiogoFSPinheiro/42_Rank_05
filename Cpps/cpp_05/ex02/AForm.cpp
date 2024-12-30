@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/28 18:49:35 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:00:52 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	AForm::execute(Bureaucrat const &executor) const
 			this->executor();	
 		}
 		else
-			std::cout <<  this->getName() << "is not signed! So it can't be executed!" << std::endl;
+			std::cout <<  this->getName() << " is not signed! So it can't be executed!" << std::endl;
 	}
 	else
 		throw GradeTooLowException();
