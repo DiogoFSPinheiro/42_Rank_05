@@ -6,12 +6,12 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/30 20:30:43 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:39:26 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Intern_HPP
-#define Intern_HPP
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
 #include <string>
 #include <iostream>
@@ -32,11 +32,16 @@ class Intern
 		Intern &operator=(const Intern& other);
 		virtual ~Intern();
 
-	AForm *Intern::makeForm(const std::string formName, const std::string target);
+	AForm *makeForm(const std::string formName, const std::string target);
 	
-	AForm *createShrubbery(const std::string &target);
-    AForm *createRobotomy(const std::string &target);
-    AForm *createPresidential(const std::string &target);
+	struct FormType{
+		std::string name;
+		AForm *(*make)(const std::string &target);
+	};
+	
+	static AForm *createShrubbery(const std::string &target);
+    static AForm *createRobotomy(const std::string &target);
+    static AForm *createPresidential(const std::string &target);
 
 };
 

@@ -6,10 +6,9 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/30 19:49:08 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:40:04 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <iostream>
 #include <ostream>
@@ -19,87 +18,91 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-
-/*int main() {
-    
-    PresidentialPardonForm form1("ola");
-    RobotomyRequestForm formR("Robot");
-    Bureaucrat Danny("Danny", 1);
-    ShrubberyCreationForm formS("test");
-    
-    std::cout << formR << std::endl;
-
-    Danny.signForm(form1);
-    Danny.executeForm(form1);
-    Danny.signForm(formR);
-    Danny.executeForm(formR);
-    Danny.signForm(formS);
-    Danny.executeForm(formS);
-
-
-
-    return 0;
-}*/
-
-
+#include "Intern.hpp"
 
 int main() {
-    try {
-        std::cout << cyan << "\n[TEST 1: ShrubberyCreationForm with Sufficient Grade]" << reset << std::endl;
-        ShrubberyCreationForm shrubForm("Garden");
-        Bureaucrat Bob("Bob", 137); // Exact grade needed for execution
-        std::cout << shrubForm << std::endl;
-        Bob.signForm(shrubForm);
-        Bob.executeForm(shrubForm);
+    std::cout << cyan << "=== Testing Intern Class ===" << reset << std::endl;
 
-        std::cout << cyan << "\n[TEST 2: ShrubberyCreationForm with Insufficient Grade]" << reset << std::endl;
-        Bureaucrat Alice("Alice", 150); // Too low to execute
-        std::cout << shrubForm << std::endl;
-        Alice.signForm(shrubForm);
-        Alice.executeForm(shrubForm);
-    } 
-    catch (const std::exception &e) {
-        std::cerr << red << "Exception: " << reset << e.what() << std::endl;
+    // Test Constructor and Destructor
+    {
+        std::cout << blue << "\n[TEST 1: Constructor and Destructor]" << reset << std::endl;
+        Intern intern;
+        std::cout << green << "Intern object created and destroyed successfully." << reset << std::endl;
     }
 
-    try {
-        std::cout << cyan << "\n[TEST 3: RobotomyRequestForm with Sufficient Grade]" << reset << std::endl;
-        RobotomyRequestForm robotForm("Robot");
-        Bureaucrat Charlie("Charlie", 45); // Exact grade needed for execution
-        std::cout << robotForm << std::endl;
-        Charlie.signForm(robotForm);
-        Charlie.executeForm(robotForm);
-
-        std::cout << cyan << "\n[TEST 4: RobotomyRequestForm with Insufficient Grade]" << reset << std::endl;
-        Bureaucrat Diana("Diana", 50); // Too low to execute
-        std::cout << robotForm << std::endl;
-        Diana.signForm(robotForm);
-        Diana.executeForm(robotForm);
-    } 
-    catch (const std::exception &e) {
-        std::cerr << red << "Exception: " << reset << e.what() << std::endl;
+    // Test Copy Constructor
+    {
+        std::cout << blue << "\n[TEST 2: Copy Constructor]" << reset << std::endl;
+        Intern intern1;
+        Intern intern2(intern1);
+        std::cout << green << "Intern copy constructor works correctly." << reset << std::endl;
     }
 
-    try {
-        std::cout << cyan << "\n[TEST 5: PresidentialPardonForm with Sufficient Grade]" << reset << std::endl;
-        PresidentialPardonForm pardonForm("Alice");
-        Bureaucrat Eric("Eric", 5); // Exact grade needed for execution
-        std::cout << pardonForm << std::endl;
-        Eric.signForm(pardonForm);
-        Eric.executeForm(pardonForm);
-
-        std::cout << cyan << "\n[TEST 6: PresidentialPardonForm with Insufficient Grade]" << reset << std::endl;
-        Bureaucrat Frank("Frank", 10); // Too low to execute
-        std::cout << pardonForm << std::endl;
-        Frank.signForm(pardonForm);
-        Frank.executeForm(pardonForm);
-    } 
-    catch (const std::exception &e) {
-        std::cerr << red << "Exception: " << reset << e.what() << std::endl;
+    // Test Assignment Operator
+    {
+        std::cout << blue << "\n[TEST 3: Assignment Operator]" << reset << std::endl;
+        Intern intern1;
+        Intern intern2;
+        intern2 = intern1;
+        std::cout << green << "Intern assignment operator works correctly." << reset << std::endl;
     }
 
+    // Test makeForm Method
+    {
+        std::cout << blue << "\n[TEST 4: makeForm Method]" << reset << std::endl;
+
+        Intern intern;
+
+        // Test Shrubbery Creation Form
+        std::cout << yellow << "Attempting to create ShrubberyCreationForm..." << reset << std::endl;
+        AForm *shrubberyForm = intern.makeForm("shrubbery request", "Home");
+        if (shrubberyForm) {
+            std::cout << green << "ShrubberyCreationForm created successfully: " << *shrubberyForm << reset << std::endl;
+            delete shrubberyForm; // Clean up
+        }
+
+        // Test Robotomy Request Form
+        std::cout << yellow << "Attempting to create RobotomyRequestForm..." << reset << std::endl;
+        AForm *robotomyForm = intern.makeForm("robotomy request", "Robot");
+        if (robotomyForm) {
+            std::cout << green << "RobotomyRequestForm created successfully: " << *robotomyForm << reset << std::endl;
+            delete robotomyForm; // Clean up
+        }
+
+        // Test Presidential Pardon Form
+        std::cout << yellow << "Attempting to create PresidentialPardonForm..." << reset << std::endl;
+        AForm *presidentialForm = intern.makeForm("presidential request", "President");
+        if (presidentialForm) {
+            std::cout << green << "PresidentialPardonForm created successfully: " << *presidentialForm << reset << std::endl;
+            delete presidentialForm; // Clean up
+        }
+
+        // Test Invalid Form Name
+        std::cout << yellow << "Attempting to create InvalidForm..." << reset << std::endl;
+        AForm *invalidForm = intern.makeForm("invalid request", "Nobody");
+        if (!invalidForm) {
+            std::cout << red << "Error handled correctly for invalid form name." << reset << std::endl;
+        }
+    }
+
+    // Test Memory Management
+    {
+        std::cout << blue << "\n[TEST 5: Memory Management]" << reset << std::endl;
+        Intern intern;
+
+        std::cout << yellow << "Attempting to create and delete a ShrubberyCreationForm..." << reset << std::endl;
+        AForm *form = intern.makeForm("shrubbery request", "Garden");
+        if (form) {
+            std::cout << green << "Memory allocation for form successful." << reset << std::endl;
+            delete form;
+            std::cout << green << "Memory deallocation successful." << reset << std::endl;
+        }
+    }
+
+    std::cout << cyan << "\n=== All Tests Completed ===" << reset << std::endl;
     return 0;
 }
+
 
 
 

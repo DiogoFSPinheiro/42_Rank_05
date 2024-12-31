@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/30 19:49:08 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:44:47 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-
-/*int main() {
-    
-    PresidentialPardonForm form1("ola");
-    RobotomyRequestForm formR("Robot");
-    Bureaucrat Danny("Danny", 1);
-    ShrubberyCreationForm formS("test");
-    
-    std::cout << formR << std::endl;
-
-    Danny.signForm(form1);
-    Danny.executeForm(form1);
-    Danny.signForm(formR);
-    Danny.executeForm(formR);
-    Danny.signForm(formS);
-    Danny.executeForm(formS);
-
-
-
-    return 0;
-}*/
-
 
 
 int main() {

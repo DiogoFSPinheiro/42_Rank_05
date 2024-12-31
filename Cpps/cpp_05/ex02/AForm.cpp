@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/30 19:47:25 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:56:55 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ AForm::AForm(const AForm& copy)
 
 AForm::~AForm()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for AForm was called!" << std::endl;
 }
 
 AForm &AForm::operator=(const AForm& other)
 {
-	std::cout << "Assigment constructor for was called!" << std::endl;
+	std::cout << "Assigment constructor for AForm was called!" << std::endl;
 	if (this != &other)
 	{
 		this->_isSigned = other._isSigned;

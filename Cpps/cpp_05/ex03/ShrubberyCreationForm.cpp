@@ -30,16 +30,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) 
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for ShrubberyCreationForm was called!" << std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-	std::cout << "Assigment constructor for was called!" << std::endl;
+	std::cout << "Assigment constructor for ShrubberyCreationForm was called!" << std::endl;
 	if (this != &other)
-	{
-		return *this;
-	}
+        AForm::operator=(other); 
 	return *this;
 }
 

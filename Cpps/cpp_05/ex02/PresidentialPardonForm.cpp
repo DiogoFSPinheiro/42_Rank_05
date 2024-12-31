@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/28 18:37:10 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:56:30 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for PresidentialPardonForm was called!" << std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
-	std::cout << "Assigment constructor for was called!" << std::endl;
+	std::cout << "Assigment constructor for PresidentialPardonForm was called!" << std::endl;
 	if (this != &other)
-	{
-		return *this;
-	}
+        AForm::operator=(other); 
 	return *this;
 }
 

@@ -36,7 +36,7 @@ Form::Form(const Form& copy) : _name(copy._name), _gradeToExec(copy._gradeToExec
 
 Form::~Form()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for Form was called!" << std::endl;
 }
 
 Form &Form::operator=(const Form& other)

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/27 13:05:20 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:02:13 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Bureaucrat::Bureaucrat() : _name("Jonny")
 {
 	_grade = 150;
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Default constructor for Bureaucrat called!" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name)
@@ -26,22 +26,22 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name)
 		throw GradeTooLowException();
 	else
 		_grade = grade;
-	std::cout << "Data constructor called!" << std::endl;
+	std::cout << "Data constructor for Bureaucrat called!" << std::endl;
 }
 
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name), _grade(copy._grade)
 {
-	std::cout << "Copy constructor called!" << std::endl;
+	std::cout << "Copy constructor for Bureaucrat called!" << std::endl;
 }
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for Bureaucrat was called!" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other)
 {
-	std::cout << "Assigment constructor for was called!" << std::endl;
+	std::cout << "Assigment constructor for Bureaucrat was called!" << std::endl;
 	if (this != &other)
 		this->_grade = other._grade;
 	return *this;

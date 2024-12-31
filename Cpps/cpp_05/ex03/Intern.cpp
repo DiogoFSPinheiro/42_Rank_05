@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/30 20:30:47 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:43:57 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,24 @@
 AForm *Intern::makeForm(const std::string formName, const std::string target)
 {
 
-	typedef AForm* (Intern::*FormCreator)(const std::string &target);
-	
-	FormCreator options[] = {&Intern::createShrubbery, &Intern::createRobotomy, &Intern::createPresidential};
-	std::string levels[] = {"shrubbery request", "robotomy request", "presidential request"};
+	FormType options[] = {{"shrubbery request", &Intern::createShrubbery},
+						  {"robotomy request", &Intern::createRobotomy},
+						  {"presidential request", &Intern::createPresidential}};
 
+	int i = 0;
+	while (i < 3)
+	{
+		if (formName == options[i].name)
+		{
+			AForm *form = options[i].make(target);
+			std::cout << "Intern created " << green << formName << reset <<std::endl;
+			return form;
+		}
+		i++;
+	}
+	std::cerr << "Wrong form name" << std::endl;
+	return NULL;
+	
 }
 
 AForm *Intern::createShrubbery(const std::string &target)
@@ -53,7 +66,7 @@ Intern::Intern(const Intern& copy)
 
 Intern::~Intern()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for Intern was called!" << std::endl;
 }
 
 Intern &Intern::operator=(const Intern& other)

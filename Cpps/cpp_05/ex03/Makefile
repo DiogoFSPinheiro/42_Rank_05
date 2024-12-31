@@ -4,9 +4,9 @@ CC = c++
 
 CFLAGS = -std=c++98 #-Wall -Wextra -Werror 
 
-NAME = MultyForm
+NAME = Intern
 
-SRCS = main.cpp Bureaucrat.cpp  AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp   
+SRCS = main.cpp Bureaucrat.cpp  AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./MultyForm
+	./Intern
 
 clean:
 	rm -rf $(OBJS) 

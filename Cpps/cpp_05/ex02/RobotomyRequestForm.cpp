@@ -30,16 +30,14 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AFor
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << "Destructor for was called!" << std::endl;
+	std::cout << "Destructor for RobotomyRequestForm was called!" << std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
-	std::cout << "Assigment constructor for was called!" << std::endl;
+	std::cout << "Assigment constructor for obotomyRequestForm was called!" << std::endl;
 	if (this != &other)
-	{
-		return *this;
-	}
+        AForm::operator=(other); 
 	return *this;
 }
 
