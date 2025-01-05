@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/05 00:08:10 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/05 01:40:29 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class ScalarConverter
 		static bool isCharLiteral(std::string value);
 		static bool isIntLiteral(std::string value);
 		static bool isFloatLiteral(std::string value);
+		static bool isDoubleLiteral(std::string value);
 
 	public:
 		
