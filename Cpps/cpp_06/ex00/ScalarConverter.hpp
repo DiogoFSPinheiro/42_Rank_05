@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/05 01:40:29 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:48:54 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #define cyan "\033[36m"
 #define reset "\033[0m"
 
+
+#include <iomanip>
 #include <string>
 #include <iostream>
 #include <limits>

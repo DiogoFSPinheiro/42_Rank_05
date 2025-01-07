@@ -2,7 +2,7 @@ MAKEFLAGS += -s
 
 CC = c++ 
 
-CFLAGS = -std=c++98 #-Wall -Wextra -Werror -std=c++98
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 NAME = ScalarConverter
 
@@ -49,7 +49,18 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./ScalarConverter
+	@echo "./ScalarConverter a"
+	./ScalarConverter a
+	@echo "./ScalarConverter 0"
+	./ScalarConverter 0
+	@echo "./ScalarConverter 22.223f"
+	./ScalarConverter 22.223f
+	@echo "./ScalarConverter 24e2222"
+	./ScalarConverter 24e2222
+	@echo "./ScalarConverter nan"
+	./ScalarConverter nan
+	@echo "./ScalarConverter -inf"
+	./ScalarConverter -inf
 
 clean:
 	rm -rf $(OBJS) 
