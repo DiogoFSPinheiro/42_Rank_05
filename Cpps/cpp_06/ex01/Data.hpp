@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/07 22:03:29 by diogosan         ###   ########.fr       */
+/*   Created: 2024/12/19 10:40:02 by diogosan          #+#    #+#             */
+/*   Updated: 2025/01/07 11:48:54 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "ScalarConverter.hpp"
+#include <string>
+#ifndef Data_HPP
+#define Data_HPP
 
-int main(int argc, char *agrv[])
+
+struct Data 
 {
-    if (argc == 2)
-		ScalarConverter::convert(agrv[1]);
-
-    else
-	 	std::cout << "Wrong nbr of args" << std::endl;
-    
-    return 0;
-}
+	int id;
+    std::string name;
+};
 
 
 
+
+#endif

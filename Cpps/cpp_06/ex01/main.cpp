@@ -6,23 +6,36 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/07 22:03:29 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:24:26 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
+#include "Data.hpp"
 
-int main(int argc, char *agrv[])
+#include <iostream>
+
+
+int main()
 {
-    if (argc == 2)
-		ScalarConverter::convert(agrv[1]);
-
-    else
-	 	std::cout << "Wrong nbr of args" << std::endl;
+  Data data = {42, "Hello Besto Furendo"};
     
-    return 0;
+  std::cout << "Original Data: id = " << data.id << ", name = " << data.name << std::endl;
+
+  // Serialize the data
+  uintptr_t raw = Serializer::serialize(&data);
+  
+  // Deserialize it back
+  Data* deserializedData = Serializer::deserialize(raw);
+  
+  std::cout << "Deserialized Data: id = " << deserializedData->id << ", name = " << deserializedData->name << std::endl;
+  
+  return 0;
 }
+
+
+
 
 
 
