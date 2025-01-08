@@ -2,11 +2,11 @@ MAKEFLAGS += -s
 
 CC = c++ 
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror 
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-NAME = BureForm
+NAME = Base
 
-SRCS = main.cpp Bureaucrat.cpp  Form.cpp 
+SRCS = main.cpp Base.cpp
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,16 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./BureForm
+	./Base
+	@echo "waiting a sec for retry...."
+	@echo
+	sleep 1
+	./Base
+	@echo "waiting a sec for retry...."
+	@echo
+	sleep 1
+	./Base
+
 
 clean:
 	rm -rf $(OBJS) 

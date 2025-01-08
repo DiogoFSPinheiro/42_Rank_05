@@ -47,9 +47,9 @@ $(NAME) : $(OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-run:
+go:
 	make re
-	./Brain
+	./Bureaucrat
 
 clean:
 	rm -rf $(OBJS) 

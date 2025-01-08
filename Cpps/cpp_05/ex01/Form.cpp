@@ -13,13 +13,13 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : _name("Deafult"), _gradeToExec(149), _gradeToSign(150)
+Form::Form() : _name("Deafult"), _gradeToSign(150), _gradeToExec(149)
 {
 	_isSigned  = false;
 	std::cout << "Default constructor called!" << std::endl;
 }
 
-Form::Form(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _gradeToExec(gradeToExec), _gradeToSign(gradeToSign)
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
 	if (_gradeToExec < 1 || _gradeToSign < 1)
 		throw GradeTooHighException();
@@ -29,7 +29,7 @@ Form::Form(const std::string name, const int gradeToSign, const int gradeToExec)
 	std::cout << "Data constructor called!" << std::endl;
 }
 
-Form::Form(const Form& copy) : _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign) , _isSigned(copy._isSigned)
+Form::Form(const Form& copy) : _name(copy._name), _isSigned(copy._isSigned), _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec) 
 {
 	std::cout << "Copy constructor called!" << std::endl;
 }

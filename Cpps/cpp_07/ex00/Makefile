@@ -2,11 +2,11 @@ MAKEFLAGS += -s
 
 CC = c++ 
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror 
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-NAME = BureForm
+NAME = ScalarConverter
 
-SRCS = main.cpp Bureaucrat.cpp  Form.cpp 
+SRCS = main.cpp ScalarConverter.cpp  
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,18 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./BureForm
+	@echo "./ScalarConverter a"
+	./ScalarConverter a
+	@echo "./ScalarConverter 0"
+	./ScalarConverter 0
+	@echo "./ScalarConverter 22.223f"
+	./ScalarConverter 22.223f
+	@echo "./ScalarConverter 24e2222"
+	./ScalarConverter 24e2222
+	@echo "./ScalarConverter nan"
+	./ScalarConverter nan
+	@echo "./ScalarConverter -inf"
+	./ScalarConverter -inf
 
 clean:
 	rm -rf $(OBJS) 

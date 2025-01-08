@@ -6,21 +6,21 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/31 16:56:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:59:17 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm() : _name("Deafult"), _gradeToExec(149), _gradeToSign(150), _target("Deafult")
+AForm::AForm() : _name("Deafult"), _gradeToSign(150), _gradeToExec(149),  _target("Deafult")
 {
 	_isSigned  = false;
 	std::cout << "Default constructor called!" << std::endl;
 }
 
 AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec, const std::string target) 
-	: _name(name), _gradeToExec(gradeToExec), _gradeToSign(gradeToSign), _target(target)
+	: _name(name),_gradeToSign(gradeToSign), _gradeToExec(gradeToExec),  _target(target)
 {
 	if (_gradeToExec < 1 || _gradeToSign < 1)
 		throw GradeTooHighException();
@@ -31,7 +31,7 @@ AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExe
 }
 
 AForm::AForm(const AForm& copy) 
-	: _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign) , _isSigned(copy._isSigned), _target(copy._target)
+	: _name(copy._name), _isSigned(copy._isSigned),  _gradeToSign(copy._gradeToSign) , _gradeToExec(copy._gradeToExec), _target(copy._target)
 {
 	std::cout << "Copy constructor called!" << std::endl;
 }
