@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-NAME = Temps
+NAME = Temps3
 
 SRCS = main.cpp 
 
@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./Temps
+	./Temps3
 
 clean:
 	rm -rf $(OBJS) 
