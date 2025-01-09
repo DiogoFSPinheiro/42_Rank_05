@@ -51,6 +51,9 @@ go:
 	make re
 	./Temps3
 
+valgrind:
+	valgrind ./Temps3
+
 clean:
 	rm -rf $(OBJS) 
 	@echo "$(YELLOW)Removing $(NAME) objects files$(RESET)" 
