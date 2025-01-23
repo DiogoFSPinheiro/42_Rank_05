@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:52:04 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/23 19:03:52 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:59:36 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Span
 		Span &operator=(const Span &other);
 
 		void	addNumber(int n);
+		void	addRangeNumbers(int start, int end);
 		long	shortestSpan();
 		long	longestSpan();
 	
@@ -39,6 +40,11 @@ class Span
 	};
 
 	class NotEnoughMembers : public std::exception
+	{
+		const char* what() const throw();
+	};
+
+	class NoSpaceRangeException : public std::exception
 	{
 		const char* what() const throw();
 	};
