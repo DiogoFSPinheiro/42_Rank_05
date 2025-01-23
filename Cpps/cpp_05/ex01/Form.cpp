@@ -13,7 +13,7 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : _name("Deafult"), _gradeToSign(150), _gradeToExec(149)
+Form::Form() : _name("Default"), _gradeToSign(150), _gradeToExec(149)
 {
 	_isSigned  = false;
 	std::cout << "Default constructor called!" << std::endl;

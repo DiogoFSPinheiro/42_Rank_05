@@ -74,10 +74,10 @@ void	Bureaucrat::decrementGrade(int nbr)
 		throw GradeTooLowException();
 }
 
-std::ostream& operator<<(std::ostream &ouput, const Bureaucrat& show)
+std::ostream& operator<<(std::ostream &output, const Bureaucrat& show)
 {
-	ouput << show.getName() << ", bureaucrat grade " << show.getGrade();
-    return ouput;
+	output << show.getName() << ", bureaucrat grade " << show.getGrade();
+    return output;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

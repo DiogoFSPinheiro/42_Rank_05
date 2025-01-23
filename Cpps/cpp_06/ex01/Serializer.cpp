@@ -13,12 +13,6 @@
 #include "Serializer.hpp"
 
 
-void Serializer::convert(std::string value)
-{
-
-}
-
-
 uintptr_t Serializer::serialize(Data* ptr)
 {
 	return reinterpret_cast<uintptr_t>(ptr);

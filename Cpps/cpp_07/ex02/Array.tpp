@@ -15,7 +15,7 @@
 template <typename T>
 Array<T>::Array() : _array(NULL), _size(0)
 {
-    std::cout << "Default constructor no array called" << std::endl;
+    std::cout << "Default constructor array called" << std::endl;
 }
 template <typename T>
 Array<T>::Array(unsigned int size) : _size(size)

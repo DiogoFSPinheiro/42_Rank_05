@@ -2,11 +2,11 @@ MAKEFLAGS += -s
 
 CC = c++ 
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-NAME = SerializeConverter
+NAME = easyFind
 
-SRCS = main.cpp Serializer.cpp
+SRCS = main.cpp 
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./SerializeConverter
+	./easyFind
 
 clean:
 	rm -rf $(OBJS) 
