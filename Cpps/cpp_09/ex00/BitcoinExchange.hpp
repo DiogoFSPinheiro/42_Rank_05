@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,44 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_H
-#define SPAN_H
+#ifndef BitcoinExchange_H
+#define BitcoinExchange_H
 
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <string>
+#include <map>
+#include <stack>
 
-class Span
+
+class BitcoinExchange
 {
 	private:
-		unsigned int _size;
-		std::vector<int> _container;
 
 	public:
-		Span();
-		Span(unsigned int size);
-		~Span();
-		Span(const Span &copy);
-		Span &operator=(const Span &other);
+		BitcoinExchange();
+		~BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &copy);
+		BitcoinExchange &operator=(const BitcoinExchange &other);
 
-		void	addNumber(int n);
-		void	addRangeNumbers(int start, int end);
-		long	shortestSpan();
-		long	longestSpan();
-	
-	class NoMoreSpaceException : public std::exception
-	{
-		const char* what() const throw();
-	};
+		std::map <std::string, float> dataBase;
+		
+		void readCsvFile();
+		void readUserFile(std::string file);
+		void printDataBase();
+		
 
-	class NotEnoughMembers : public std::exception
-	{
-		const char* what() const throw();
-	};
-
-	class NoSpaceRangeException : public std::exception
+	class CantReadFile : public std::exception
 	{
 		const char* what() const throw();
 	};
 
 };
 #endif
+
+bool	checkInput(std::string date, std::string value);
+bool	isUnsignedNumber(std::string value);
+bool	isLeapYear(int year);
+bool	wrongDashCount(const std::string& date);
+bool	checkDate(std::string date);
+void	writeTransformedData(std::map <std::string, float> dataBase, std::string date, std::string value);
