@@ -55,7 +55,7 @@ void	Span::addRangeNumbers(int start, int end)
 
 	size = std::abs(end - start) + 1;
 	
-	if (_container.size() + size < size)
+	if (_container.size() + size > _size)
 		throw NoSpaceRangeException();
 	
 	std::vector<int> range;

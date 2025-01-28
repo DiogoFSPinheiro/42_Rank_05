@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2024/12/31 16:40:04 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:42:05 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main() {
 
         // Test Shrubbery Creation Form
         std::cout << yellow << "Attempting to create ShrubberyCreationForm..." << reset << std::endl;
-        AForm *shrubberyForm = intern.makeForm("shrubbery request", "Home");
+        AForm *shrubberyForm = intern.makeForm("shrubberffhgy request", "Home");
         if (shrubberyForm) {
             std::cout << green << "ShrubberyCreationForm created successfully: " << *shrubberyForm << reset << std::endl;
             delete shrubberyForm; // Clean up
