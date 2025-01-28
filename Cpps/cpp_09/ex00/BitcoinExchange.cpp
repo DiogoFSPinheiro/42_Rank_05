@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:51:55 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/27 15:48:19 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:41:39 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void writeTransformedData(std::map <std::string, float> dataBase, std::string da
 	
 	std::cout << date << " => ";
 	std::cout << value << " = ";
-	std::cout << std::atof(value.c_str()) * it->second << std::endl;	
+	std::cout << (std::atof(value.c_str()) * it->second == -0 ? 0 : std::atof(value.c_str()) * it->second )<< std::endl;	
 }
 
 
@@ -184,6 +184,8 @@ bool isUnsignedNumber(std::string value)
 	unsigned long c = 0;
 	bool hasDecimalPoint = false;
 
+	
+
 	if (value[0] == '-')
 	{
 		std::cout << "Error: Negative number" << std::endl;
@@ -209,6 +211,10 @@ bool isUnsignedNumber(std::string value)
 			
 		c++;
 	}
+
+	if (std::atof(value.c_str()) == -0)
+		return true;
+		
 	if (std::atof(value.c_str()) > 1000)
 	{
 		std::cout << "Error: too large a number" << std::endl;

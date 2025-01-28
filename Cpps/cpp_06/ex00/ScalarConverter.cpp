@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:40:31 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/07 11:58:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:52:12 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,7 @@ void ScalarConverter::convert(std::string value)
 			else
 				std::cout << "int: " << static_cast<int>(nbrFloat) << std::endl;
 
-			if (nbrFloat < std::numeric_limits<float>::min() || nbrFloat > std::numeric_limits<float>::max())
-				std::cout << "float:  impossible" << std::endl;
-			else
-				std::cout << "float: " << nbrFloat << "f" << std::endl;
-
+			std::cout << "float: " << nbrFloat << "f" << std::endl;
 			std::cout << "double: " << static_cast<double>(nbrFloat)  << std::endl;
 		}
 	}
@@ -97,15 +93,9 @@ void ScalarConverter::convert(std::string value)
 			else
 				std::cout << "int: " << static_cast<int>(nbrDou) << std::endl;
 
-			if (nbrDou < std::numeric_limits<float>::min() || nbrDou > std::numeric_limits<float>::max())
-				std::cout << "float: impossible" << std::endl;
-			else
-				std::cout << "float: " << static_cast<float>(nbrDou) << "f"<< std::endl;
 
-			if (nbrDou < std::numeric_limits<double>::min() || nbrDou > std::numeric_limits<double>::max())
-				std::cout << "double: impossible" << std::endl;
-			else
-				std::cout << "double: " << nbrDou << std::endl;
+			std::cout << "float: " << static_cast<float>(nbrDou) << "f"<< std::endl;
+			std::cout << "double: " << nbrDou << std::endl;
 		}
 	}
 	else

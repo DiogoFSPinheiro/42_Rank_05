@@ -4,9 +4,9 @@ CC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-NAME = btc
+NAME = RPN
 
-SRCS = main.cpp BitcoinExchange.cpp
+SRCS = main.cpp RPN.cpp
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./btc file.txt
+	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
 clean:
 	rm -rf $(OBJS) 

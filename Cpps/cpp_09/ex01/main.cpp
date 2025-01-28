@@ -6,16 +6,18 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/27 15:14:48 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:10:50 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cctype>
 #include <deque>
+#include <exception>
 #include <iostream>
 #include <vector>
 #include <list>
 #include <string>
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 
 #define blue "\033[34m"
 #define red "\033[31m"
@@ -25,27 +27,58 @@
 #define cyan "\033[36m"
 #define reset "\033[0m"
 
-int main(int arc, char **argv)
+
+bool	seeSignal(char c)
 {
-	BitcoinExchange data;
+	return ( c == '+' || c == '-' || c == '*' || c == '/' );
+}
+
+bool	parceArgs(std::string data)
+{
+	int c = 0;
+	int size = data.size() - 1;
 	
-	if (arc != 2 )
+	while (c < size)
 	{
-		std::cout << red << "The expected input is -> ./btc file.txt"<< reset << std::endl;
+		if (seeSignal(data[c]))
+			c++;
+		else if (std::isdigit(data[c]) && !std::isdigit(data[c + 1]))
+			c++;
+		else
+			return false;	
+		c++;
+	}
+	
+	return true;
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		std::cerr << "Wrong number of args" << std::endl;
 		return 0;
 	}
-	
-	try
+	if (parceArgs(argv[1]))
 	{
-		data.readCsvFile();
-		data.readUserFile(argv[1]);
-
+		try{
+			RPN notation(argv[1]);
+		}
+		catch(std::exception &e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
 	}
-	catch (std::exception &e)
-	{
-		std::cerr << red << "Exception: " << reset << e.what() << std::endl;
-	}
-	
 		
+	else
+	{
+		std::cerr << "Wrong Syntax, only numbers 0 -> 9 are accepted and check the Operators" << std::endl;
+		return 0;
+	}
+		
+
+	
+
+
 	return 0;
 }
