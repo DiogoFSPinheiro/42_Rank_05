@@ -4,9 +4,9 @@ CC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-NAME = RPN
+NAME = PmergeMe
 
-SRCS = main.cpp RPN.cpp
+SRCS = main.cpp PmergeMe.cpp
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	./PmergeMe 7 3 5 1 9 2 8 6
 
 clean:
 	rm -rf $(OBJS) 

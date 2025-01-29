@@ -6,18 +6,20 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/28 19:10:50 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:38:17 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
+
+#include <climits>
 #include <deque>
 #include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 #include <list>
 #include <string>
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 #define blue "\033[34m"
 #define red "\033[31m"
@@ -27,58 +29,60 @@
 #define cyan "\033[36m"
 #define reset "\033[0m"
 
-
-bool	seeSignal(char c)
+bool isNumber(std::string &str)
 {
-	return ( c == '+' || c == '-' || c == '*' || c == '/' );
-}
+	std::string::iterator it = str.begin();
 
-bool	parceArgs(std::string data)
-{
-	int c = 0;
-	int size = data.size() - 1;
-	
-	while (c < size)
+	while (it != str.end())
 	{
-		if (seeSignal(data[c]))
-			c++;
-		else if (std::isdigit(data[c]) && !std::isdigit(data[c + 1]))
-			c++;
-		else
-			return false;	
-		c++;
+		if (*it == '+')
+			it++;
+		if (!std::isdigit(*it))
+			return false;
+		it++;
 	}
-	
 	return true;
 }
 
+void printNumbers(PmergeMe numbers, int time)
+{
+	int c = -1;
+	std::cout << (time ? "After:    ":  "Before:   " );
+	while (++c < numbers.vectorSize())
+		std::cout << numbers.getVectorPosition(c) << " ";
+	std::cout << std::endl;
+}
+
+
 int main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		std::cerr << "Wrong number of args" << std::endl;
-		return 0;
-	}
-	if (parceArgs(argv[1]))
-	{
-		try{
-			RPN notation(argv[1]);
-		}
-		catch(std::exception &e)
-		{
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
-	}
-		
-	else
-	{
-		std::cerr << "Wrong Syntax, only numbers 0 -> 9 are accepted and check the Operators" << std::endl;
-		return 0;
-	}
-		
-
+	PmergeMe numbers;
 	
+	try
+	{
+		if (argc < 3)
+			throw std::runtime_error("Wrong number of args");
+		argv++;
+		while (*argv)
+		{
+			std::string num = *argv;
+			if (!isNumber(num))
+				throw std::runtime_error("Not a Number!");
+			if (std::atof(num.c_str()) > INT_MAX)
+				throw std::runtime_error("Number above int max!");
+			numbers.addArgs(atof(num.c_str()));
+			argv++;
+		}
+		printNumbers(numbers, 0);
+		numbers.FordJohnson();
+		printNumbers(numbers, 1);
 
-
+		
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << red << "Error: " << e.what() << reset << std::endl;
+	}
+	
 	return 0;
 }

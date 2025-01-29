@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:51:55 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/28 19:16:00 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:33:44 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ RPN::~RPN(){
 RPN &RPN::operator=(const RPN &other)
 {
     if (this != &other)
-        return *this;
+        this->_container = other._container;
     return *this;
 }
 

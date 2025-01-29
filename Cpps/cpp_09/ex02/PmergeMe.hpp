@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_H
-#define RPN_H
+#ifndef PmergeMe_H
+#define PmergeMe_H
 
 #include <iostream>
 #include <fstream>
@@ -22,27 +22,36 @@
 #include <stack>
 #include <algorithm>
 
-class RPN
+class PmergeMe
 {
 	private:
-		std::stack<int> _container;
+		std::vector<int> _vector;
+		std::deque<int> _deque;
+		
 
 	public:
-		RPN();
-		RPN(const std::string &data);
-		~RPN();
-		RPN(const RPN &copy);
-		RPN &operator=(const RPN &other);
+		PmergeMe();
+		~PmergeMe();
+		PmergeMe(const PmergeMe &copy);
+		PmergeMe &operator=(const PmergeMe &other);
 
-		void calculate(const std::string data);
-		
+		void	addArgs(int num);
+		int		vectorSize();
+		int		getVectorPosition(unsigned int c);
+
+		void	divideInPairsVector(int dept = 0);
+		void	FordJohnson();
+		bool	sorted();
+
+		void mergeInsertionSort(std::vector<int> & container, int pair_level);
+		void swapPair(std::vector<int>::iterator it, int pair_level);
+
+
 	class MyException : public std::exception
 	{
 		const char* what() const throw();
 	};
 
 };
-
-bool	seeSignal(char c);
 
 #endif
