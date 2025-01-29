@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/29 15:38:17 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:36:56 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ bool isNumber(std::string &str)
 	return true;
 }
 
-void printNumbers(PmergeMe numbers, int time)
-{
-	int c = -1;
-	std::cout << (time ? "After:    ":  "Before:   " );
-	while (++c < numbers.vectorSize())
-		std::cout << numbers.getVectorPosition(c) << " ";
-	std::cout << std::endl;
-}
-
 
 int main(int argc, char **argv)
 {
@@ -73,9 +64,8 @@ int main(int argc, char **argv)
 			numbers.addArgs(atof(num.c_str()));
 			argv++;
 		}
-		printNumbers(numbers, 0);
 		numbers.FordJohnson();
-		printNumbers(numbers, 1);
+		
 
 		
 	}
