@@ -47,9 +47,11 @@ $(NAME) : $(OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
+#7 3 5 1 9 2 8 6
+
 go:
 	make re
-	./PmergeMe 7 3 5 1 9 2 8 6
+	./PmergeMe 37 5 18 42 91 26 74 12 63 8 55 33 97 21 60 48 85 2 79 30 14 66 
 
 clean:
 	rm -rf $(OBJS) 
