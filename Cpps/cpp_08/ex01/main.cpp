@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:51:59 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/27 09:17:08 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:34:34 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 int main()
 {
-	
+
 	std::cout << "\nContainer size -> 3"<< std::endl;
 	try
 	{
 		Span container(3);
-		
 		container.addNumber(5);
 		container.addNumber(3);
 		container.addNumber(10);
@@ -52,7 +51,6 @@ int main()
 	{
 		std::cerr << "Exception: "<< e.what() << std::endl;
 	}
-	
-	return 0;
 
+		return 0;
 }

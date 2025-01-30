@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:51:55 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/29 22:49:37 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:17:04 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 	bool is_odd = pair_units_nbr % 2 == 1;
 
 	Iterator start = container.begin();
-	Iterator last = next(container.begin(), pair_level * (pair_units_nbr));
+	Iterator last = next(container.begin(), pair_level * pair_units_nbr);
 	Iterator end = next(last, -(is_odd * pair_level));
 
 	int jump = 2 * pair_level;
@@ -134,19 +134,22 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 		int curr_jacobsthal = jacobsthalNumber(k);
 		int jacobsthal_diff = curr_jacobsthal - prev_jacobsthal;
 		int offset = 0;
+		std::cout << "dif size " <<jacobsthal_diff << std::endl;
+		std::cout << "pen size " << static_cast<int>(pend.size()) << std::endl;
 		if (jacobsthal_diff > static_cast<int>(pend.size()))
 			break;
 		int nbr_of_times = jacobsthal_diff;
 
 		std::vector<Iterator>::iterator pend_it = next(pend.begin(), jacobsthal_diff - 1);
+		std::cout << **pend_it << std::endl;
 		std::vector<Iterator>::iterator bound_it = next(main.begin(), curr_jacobsthal + inserted_numbers);
-		
 		while (nbr_of_times)
 		{
 			std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), bound_it, *pend_it, compareVector);
 			std::vector<Iterator>::iterator inserted = main.insert(idx, *pend_it);
 			nbr_of_times--;
 			pend_it = pend.erase(pend_it);
+			std::cout << "pen size after losing 1" << static_cast<int>(pend.size()) << std::endl;
 			std::advance(pend_it, -1);
 
 			offset += (inserted - main.begin()) == curr_jacobsthal + inserted_numbers;
@@ -160,11 +163,8 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 	for (size_t i = 0; i < pend.size(); i++)
     {
         std::vector<Iterator>::iterator curr_pend = next(pend.begin(), i);
-        
 		std::vector<Iterator>::iterator curr_bound = next(main.begin(), main.size() - pend.size() + i);
-        
 		std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), curr_bound, *curr_pend, compareVector);
-
         main.insert(idx, *curr_pend);
     }
 
