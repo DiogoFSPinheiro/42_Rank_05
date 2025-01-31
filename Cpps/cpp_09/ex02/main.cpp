@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:18:39 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/29 22:36:56 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:08:26 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ int main(int argc, char **argv)
 		{
 			std::string num = *argv;
 			if (!isNumber(num))
-				throw std::runtime_error("Not a Number!");
+				throw std::runtime_error("Not an aceptable number!");
 			if (std::atof(num.c_str()) > INT_MAX)
 				throw std::runtime_error("Number above int max!");
 			numbers.addArgs(atof(num.c_str()));
 			argv++;
 		}
 		numbers.FordJohnson();
-		
-
-		
+			
 	}
 	catch (std::exception &e)
 	{
