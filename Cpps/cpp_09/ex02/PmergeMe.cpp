@@ -6,14 +6,15 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:51:55 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/31 16:32:11 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:28:50 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <algorithm>
 #include <cctype>
 #include <cstddef>
-#include <stdexcept>
+#include <deque>
 
 bool PmergeMe::sorted()
 {
@@ -23,7 +24,7 @@ bool PmergeMe::sorted()
 	{
 		if (_vector[c] > _vector[c + 1])
 			return false;
-		if (_deque[c] > _deque[c +1])
+		if (_deque[c] > _deque[c + 1])
 			return false;
 		c++;
 	}
@@ -73,15 +74,6 @@ void PmergeMe::printNumbers(int time, std::string type)
 	}
 }
 
-bool	compareVector(Iterator lv, Iterator rv)
-{
-	return *lv < *rv;
-}
-
-bool	compareDeque(Iterator_Deque lv, Iterator_Deque rv)
-{
-	return *lv < *rv;
-}
 /*--------------------------vector-------------------*/
 Iterator PmergeMe::next(Iterator it, int steps)
 {
@@ -173,7 +165,8 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 	std::vector<Iterator>::iterator to_pend;
 	std::vector<Iterator>::iterator limit;
 	
-	for (int k = 2;; k++)
+	int k = 2;
+	while (k)
 	{
 		int curr_jacobsthal = jacobsthalNumber(k);
 		int jacobsthal_diff = curr_jacobsthal - prev_jacobsthal;
@@ -187,7 +180,7 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 
 		while (nbr_of_times)
 		{
-			std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), limit, *to_pend, compareVector);
+			std::vector<Iterator>::iterator idx = binaryLook<std::vector<Iterator> >(main.begin(), limit, *to_pend);
 			std::vector<Iterator>::iterator inserted = main.insert(idx, *to_pend);
 			nbr_of_times--;
 			to_pend = pend.erase(to_pend);
@@ -200,20 +193,22 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &container, int pair_level)
 		prev_jacobsthal = curr_jacobsthal;
 		inserted_numbers += jacobsthal_diff;
 		offset = 0;
+		k++;
 	}
-
-	for (size_t i = 0; i < pend.size(); i++)
+	size_t i = 0;
+	while (i < pend.size())
     {
         to_pend = next(pend.begin(), i);
 		limit = next(main.begin(), main.size() - pend.size() + i);
-		std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), limit, *to_pend, compareVector);
+		std::vector<Iterator>::iterator idx = binaryLook<std::vector<Iterator> >(main.begin(), limit, *to_pend);
         main.insert(idx, *to_pend);
+		i++;
     }
 
     if (is_odd)
     {
         Iterator odd_pair = next(end, pair_level - 1);
-        std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), main.end(), odd_pair, compareVector);
+        std::vector<Iterator>::iterator idx = binaryLook<std::vector<Iterator> >(main.begin(), main.end(), odd_pair);
         main.insert(idx, odd_pair);
     }
 
@@ -280,7 +275,8 @@ void PmergeMe::mergeInsertionSort(std::deque<int> &container, int pair_level)
 	std::deque<Iterator_Deque>::iterator to_pend;
 	std::deque<Iterator_Deque>::iterator limit;
 	
-	for (int k = 2;; k++)
+	int k = 2;
+	while (k)
 	{
 		int curr_jacobsthal = jacobsthalNumber(k);
 		int jacobsthal_diff = curr_jacobsthal - prev_jacobsthal;
@@ -294,7 +290,7 @@ void PmergeMe::mergeInsertionSort(std::deque<int> &container, int pair_level)
 
 		while (nbr_of_times)
 		{
-			std::deque<Iterator_Deque>::iterator idx = std::upper_bound(main.begin(), limit, *to_pend, compareDeque);
+			std::deque<Iterator_Deque>::iterator idx = binaryLook<std::deque<Iterator_Deque> >(main.begin(), limit, *to_pend);
 			std::deque<Iterator_Deque>::iterator inserted = main.insert(idx, *to_pend);
 			nbr_of_times--;
 			to_pend = pend.erase(to_pend);
@@ -307,25 +303,28 @@ void PmergeMe::mergeInsertionSort(std::deque<int> &container, int pair_level)
 		prev_jacobsthal = curr_jacobsthal;
 		inserted_numbers += jacobsthal_diff;
 		offset = 0;
+		k++;
 	}
-
-	for (size_t i = 0; i < pend.size(); i++)
+	
+	size_t i = 0;
+	while (i < pend.size())
     {
         to_pend = next(pend.begin(), i);
 		limit = next(main.begin(), main.size() - pend.size() + i);
-		std::deque<Iterator_Deque>::iterator idx = std::upper_bound(main.begin(), limit, *to_pend, compareDeque);
+		std::deque<Iterator_Deque>::iterator idx = binaryLook<std::deque<Iterator_Deque> >(main.begin(), limit, *to_pend);
         main.insert(idx, *to_pend);
+		i++;
     }
 
     if (is_odd)
     {
         Iterator_Deque odd_pair = next(end, pair_level - 1);
-        std::deque<Iterator_Deque>::iterator idx = std::upper_bound(main.begin(), main.end(), odd_pair, compareDeque);
+        std::deque<Iterator_Deque>::iterator idx = binaryLook<std::deque<Iterator_Deque> >(main.begin(), main.end(), odd_pair);
         main.insert(idx, odd_pair);
     }
 
     std::deque<int> copy;
-    copy.resize(container.size());
+    //copy.resize(container.size());
     for (std::deque<Iterator_Deque>::iterator it = main.begin(); it != main.end(); it++)
     {
         for (int i = 0; i < pair_level; i++)

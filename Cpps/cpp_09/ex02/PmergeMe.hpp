@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:52:04 by diogosan          #+#    #+#             */
-/*   Updated: 2025/01/31 16:22:52 by diogosan         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:07:27 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,32 @@ class PmergeMe
 };
 
 long	jacobsthalNumber(long n);
-bool	compareVector(Iterator lv, Iterator rv);
-bool	compareDeque(Iterator_Deque lv, Iterator_Deque rv);
+std::vector<Iterator>::iterator binaryLook(std::vector<Iterator>::iterator start, std::vector<Iterator>::iterator end, Iterator num);
+
+template<typename T>
+int getDistance(typename T::iterator start, typename T::iterator end)
+{
+	int c = 0;
+
+	for (typename T::iterator it = start; it != end; it++)
+		c++;	
+	return c;
+}
+
+template<typename T>
+typename T::iterator binaryLook(typename T::iterator start, typename T::iterator end, typename T::value_type num)
+{
+	if (start == end)
+		return start;
+
+	typename T::iterator midle = start;
+
+	std::advance(midle, getDistance<T>(start, end)/2);
+
+	if (**midle > *num)
+		return binaryLook<T>(start, midle, num);
+	else
+		return binaryLook<T>(midle + 1, end, num);
+}
 
 #endif
