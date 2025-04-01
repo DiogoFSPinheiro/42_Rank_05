@@ -30,7 +30,7 @@ void RPN::calculate(const std::string data)
 
 		else if (seeSignal(token[0]))
 		{
-			if (_container.size() > 2)
+			if (_container.size() < 2)
 				throw std::runtime_error("Wrong amount of numbers for operation");
 			
 			int a = _container.top();

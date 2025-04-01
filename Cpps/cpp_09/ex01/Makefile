@@ -49,7 +49,7 @@ $(NAME) : $(OBJS)
 
 go:
 	make re
-	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	./RPN "8     9 * 9 - 9 - 9 - 4 - 1 +"
 
 clean:
 	rm -rf $(OBJS) 

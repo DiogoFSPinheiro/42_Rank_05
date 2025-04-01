@@ -37,16 +37,17 @@ bool	parceArgs(std::string data)
 {
 	int c = 0;
 	int size = data.size() - 1;
-	
+
 	while (c < size)
 	{
-		if (seeSignal(data[c]))
+		if (seeSignal(data[c]) && data[c + 1] == ' ')
 			c++;
 		else if (std::isdigit(data[c]) && !std::isdigit(data[c + 1]))
 			c++;
+		else if (data[c] == ' ' || data[c] == '	' )
+			c++;
 		else
-			return false;	
-		c++;
+			return false;
 	}
 	
 	return true;
